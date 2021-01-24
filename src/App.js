@@ -20,45 +20,45 @@ function App() {
                 setWeatherList(data.properties.periods);
             });
     }, []);
-    
-
-  return (
-      <div className="App">
-          {weatherList.length === 0
-          ? "Loading..."
-          : weatherList.map((wx) => (
-              <Weather
-                  key={wx.number}
-                  time={wx.name}
-                  tempF={wx.temperature}
-                  conditions={wx.shortForecast}
-              />
-          ))}
-
-          <Counter />
-          <h2>Another Counter ...</h2>
-          <Counter />
-
-          <br />
-          
-          <Switch />
-          <Switch />
-
-          <br />
-
-          <Votes />
-
-          <QuoteList />
-
-          <Quotes author="Yoda" text="Do. Or do not. There is no try." date="Along time ago." />
-          <Quotes author="Nelson Mandela" text="It always seems impossible until it's done" date={2001} />
-          <br />
-          <Quotes author="Bugs Bunny" text="What's up doc?" />
 
 
+    return (
+        <div className="App">
+            {weatherList.length === 0
+                ? "Loading..."
+                : weatherList.map((wx) => (
+                    <Weather
+                        key={wx.number}
+                        time={wx.name}
+                        tempF={wx.temperature}
+                        conditions={wx.shortForecast}
+                    />
+                ))}
 
-    </div>
-  );
+            <Counter />
+            <h2>Another Counter ...</h2>
+            <Counter />
+
+            <br />
+
+            <Switch />
+            <Switch />
+
+            <br />
+
+            <Votes />
+
+            <QuoteList />
+
+            <Quotes author="Yoda" text="Do. Or do not. There is no try." date="Along time ago." />
+            <Quotes author="Nelson Mandela" text="It always seems impossible until it's done" date={2001} />
+            <br />
+            <Quotes author="Bugs Bunny" text="What's up doc?" />
+
+
+
+        </div>
+    );
 }
 
 export default App;

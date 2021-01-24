@@ -3,42 +3,54 @@ import "./Votes.css";
 
 function Votes() {
 
-    const [chocVotes, setChocCount] = useState(0);
-    const [vanVotes, setVanCount] = useState(0);
-    const [strawVotes, setStrawCount] = useState(0);
+    const [chocolate, setChocolate] = useState(0);
+    const [vanilla, setVanilla] = useState(0);
+    const [strawberry, setStrawberry] = useState(0);
 
-    function upChoc() {
-        setChocCount(chocVotes + 1);
-    }
-    function upVan() {
-        setVanCount(vanVotes + 1);
-    }
-    function upStraw() {
-        setStrawCount(strawVotes + 1);
-    } 
-    function reset() {
-        setChocCount(0);
-        setVanCount(0);
-        setStrawCount(0);
+    const total = chocolate + vanilla + strawberry;
+    const percentages = {
+        chocolate: percentage(chocolate, total),
+        vanilla: percentage(vanilla, total),
+        strawberry: percentage(strawberry, total)
+    };
+
+    function percentage(n, total) {
+        if (total === 0) {
+            return "0.0%";
+        }
+        return ((n / total) * 100).toFixed(1) + "%";
     }
 
     return (
         <div className="Votes">
-            <h3>Chocolate: {chocVotes} ({chocVotes / (chocVotes + vanVotes + strawVotes) * 100})%</h3>
-            <h3>Vanilla: {vanVotes} ({vanVotes / (chocVotes + vanVotes + strawVotes) * 100})%</h3>
-            <h3>Strawberry: {strawVotes} ({strawVotes / (chocVotes + vanVotes + strawVotes) * 100})%</h3>
             <p>
-                <button onClick={upChoc}>Chocolate</button>
-                <button onClick={upVan}>Vanilla</button>
-                <button onClick={upStraw}>Strawberry</button>               
+                <label>Chocolate:</label> {chocolate} ({percentages.chocolate})
             </p>
+            <div
+                className="Votes__bar Votes__bar--chocolate"
+                style={{ width: percentages.chocolate }}
+            ></div>
             <p>
-                {vanVotes, strawVotes, chocVotes !== 0 &&
-                    <button onClick={reset}>Reset Votes</button>}
+                <label>Vanilla:</label> {vanilla} ({percentages.vanilla})
             </p>
-
+            <div
+                className="Votes__bar Votes__bar--vanilla"
+                style={{ width: percentages.vanilla }}
+            ></div>
+            <p>
+                <label>Strawberry:</label> {strawberry} ({percentages.strawberry})
+             </p>
+            <div
+                className="Votes__bar Votes__bar--strawberry"
+                style={{ width: percentages.strawberry }}
+            ></div>
+            <div className="Buttons">
+                <button onClick={() => setChocolate(chocolate + 1)}>Chocolate</button>
+                <button onClick={() => setVanilla(vanilla + 1)}>Vanilla</button>
+                <button onClick={() => setStrawberry(strawberry + 1)}>Strawberry</button>
+            </div>
         </div>
-        );
+    );
 }
 
 export default Votes;
