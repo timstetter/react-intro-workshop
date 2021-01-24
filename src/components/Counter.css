@@ -1,0 +1,8 @@
+/*
+    Make sure to target the Counter 
+*/
+.Counter {
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+}
